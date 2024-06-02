@@ -9,7 +9,7 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
     </head>
     <body>
         <p>Seleccione el cliente a modificar:</p>
-        <form action="mod_cliente.php" method ="post">
+        <form action="show.php" method ="post">
             cliente: <select name = "cliente">
                 <?php
                 $query = $mysqli -> query("SELECT * FROM cliente") or die ("no se puede generar el query");

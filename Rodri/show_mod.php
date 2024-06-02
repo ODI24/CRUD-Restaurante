@@ -1,18 +1,10 @@
-<?
+<?php
 include ("conexion.php");
 $db = "restaurante";
 $con = conectar($db);
 
 
 $i = $_REQUEST['i'];
-
-
-switch($i) {
-    case 'cliente': 
-        mod_cliente();
-    break;
-}
-
 
 function mod_cliente() {
     global $con;
@@ -21,10 +13,11 @@ function mod_cliente() {
     $nombre = $_REQUEST['nombre'];
     $ape_p = $_REQUEST['paterno'];
     $ape_m = $_REQUEST['materno'];
+    $tel = $_REQUEST['telephone'];
     
 
-    $ins = "UPDATE cliente SET nombre = $nombre, apellido_p = $ape_p, apellido_m = $ape_m WHERE
-            n_cliente = $id";
+    $ins = "UPDATE cliente SET nombre = '$nombre', apellido_p = '$ape_p', apellido_m = '$ape_m',
+    telefono = '$tel' WHERE n_cliente = '$id'";
     $mod = mysqli_query($con, $ins) or die ('No se pudo modificar');
 
     $show = "SELECT * FROM cliente WHERE n_cliente = $id";
@@ -50,6 +43,12 @@ function mod_cliente() {
 
 
     mysqli_close($con);
+}
+
+switch($i) {
+    case 'cliente': 
+        mod_cliente();
+    break;
 }
 
 ?>
