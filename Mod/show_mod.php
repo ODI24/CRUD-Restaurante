@@ -232,6 +232,9 @@ switch($i) {
     case 'orden':
         mod_orden();
     break;
+    case 'cargo':
+        mod_cargo();
+    break;
 }
 
 ?>
