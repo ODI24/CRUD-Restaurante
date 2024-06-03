@@ -18,8 +18,8 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
         ?>
         <form action="" method="post">
             <input type="hidden" name="i" value="orden">
-            <h4>Seleccione ingredientes a eliminar (ctrl + click): </h4>
-            cliente: <select name = "id[]" multiple required>
+            <h4>Seleccione ordenes a eliminar (ctrl + click): </h4>
+            ordenes: <select name = "id[]" multiple required>
             <?php
             $query = $mysqli -> query("SELECT * FROM ordenar") or die ("no se puede generar el query");
             while($valores = mysqli_fetch_array($query)) {

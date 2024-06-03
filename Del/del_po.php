@@ -30,7 +30,7 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
             ?>
             </select> <br>
             <h4>Ingrese los productos a eliminar (ctrl + click):</h4>
-            orden: <select name = "id_p[]" multiple required>
+            productos: <select name = "id_p[]" multiple required>
             <?php
             $query = $mysqli -> query("SELECT * FROM producto") or die ("no se puede generar el query");
             while($valores = mysqli_fetch_array($query)) {

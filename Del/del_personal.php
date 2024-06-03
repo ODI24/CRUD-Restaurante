@@ -19,7 +19,7 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
         <form action="" method="post">
             <input type="hidden" name="i" value="personal">
             <h4>Seleccione personal a eliminar (ctrl + click): </h4>
-            cliente: <select name = "id[]" multiple required>
+            personal: <select name = "id[]" multiple required>
             <?php
             $query = $mysqli -> query("SELECT * FROM personal") or die ("no se puede generar el query");
             while($valores = mysqli_fetch_array($query)) {

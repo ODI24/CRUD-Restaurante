@@ -188,6 +188,33 @@ function mod_orden() {
     echo "</table>";
 }
 
+function mod_cargo() {
+    global $mysqli;
+
+    $id = $_REQUEST['id'];
+    $nombre = $_REQUEST['nombre'];
+    
+    $ins = "UPDATE cargo SET nombre_cargo = '$nombre' WHERE pk_cargo = '$id'";
+    $mysqli->query($ins) or die ('No se pudo modificar');
+
+    $show = "SELECT * FROM cargo WHERE pk_cargo = $id";
+    $res = $mysqli->query($show) or die ('No se puede mostrar');
+
+    echo "<table border = '2'>";
+    echo "<tr>";
+    echo "<th>id</th>";
+    echo "<th>nombre del cargo</th>";
+
+    while($columna = mysqli_fetch_array($res)) {
+        echo "<tr>";
+        echo   "<td>" . $columna['pk_cargo'] . "</td>
+                <td>" . $columna['nombre_cargo'] . "</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+}
+
 //switch para determinar cual función realizar
 switch($i) {
     case 'cliente': 

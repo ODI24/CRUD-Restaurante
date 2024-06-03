@@ -5,10 +5,10 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
 
 <html>
     <head>
-        <title>Eliminar Productos</title>
+        <title>Eliminar Cargos</title>
     </head>
     <body>
-        <h1>Eliminar Productos</h1>
+        <h1>Eliminar Cargos</h1>
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['i'])) {
                 echo '<h3>Datos Eliminados:</h3>';
@@ -17,13 +17,13 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
             }
         ?>
         <form action="" method="post">
-            <input type="hidden" name="i" value="producto">
-            <h4>Seleccione productos a eliminar (ctrl + click): </h4>
-            productos: <select name = "id[]" multiple required>
+            <input type="hidden" name="i" value="cargo">
+            <h4>Seleccione cargos a eliminar (ctrl + click): </h4>
+            cargos: <select name = "id[]" multiple required>
             <?php
-            $query = $mysqli -> query("SELECT * FROM producto") or die ("no se puede generar el query");
+            $query = $mysqli -> query("SELECT * FROM cargo") or die ("no se puede generar el query");
             while($valores = mysqli_fetch_array($query)) {
-                echo '<option value="'.$valores['id_producto'].'">'.$valores['nombre_producto'].'</option>';
+                echo '<option value="'.$valores['pk_cargo'].'">'.$valores['nombre_cargo'].'</option>';
             }
             ?>
             </select> <br><br>

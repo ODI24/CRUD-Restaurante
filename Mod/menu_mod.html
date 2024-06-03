@@ -12,6 +12,8 @@
     <button id="btn_Ord" onclick="movetoOrd()">Orden</button>
     <button id="btn_Pro" onclick="movetoPro()">Producto</button>
     <button id="btn_Per" onclick="movetoPer()">Personal</button>
+    <button id="btn_Car" onclick="movetoCar()">Personal</button>
+    
     <br><br>
     <button id="btn_return" onclick="returntoMenu()">Regresar</button>
 
@@ -30,6 +32,9 @@
         }
         function movetoPer() {
             window.location.href = "mod_personal.php";
+        }
+        function movetoCar() {
+            window.location.href = "mod_cargo.php";
         }
         function returntoMenu() {
             window.location.href = "../inicio.html";

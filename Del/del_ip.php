@@ -19,7 +19,7 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
         <form action="" method="post">
             <h4>Producto a modificar</h4>
             <input type="hidden" name="i" value="ip">
-            orden: <select name = "id" required>
+            productos: <select name = "id" required>
             <?php
             $query = $mysqli -> query("SELECT * FROM producto") or die ("no se puede generar el query");
             while($valores = mysqli_fetch_array($query)) {
@@ -28,7 +28,7 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
             ?>
             </select> <br>
             <h4>Ingrese los ingredientes a eliminar (ctrl + click):</h4>
-            orden: <select name = "id_i[]" multiple required>
+            ingredientes: <select name = "id_i[]" multiple required>
             <?php
             $query = $mysqli -> query("SELECT * FROM ingredientes") or die ("no se puede generar el query");
             while($valores = mysqli_fetch_array($query)) {

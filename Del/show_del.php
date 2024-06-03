@@ -175,6 +175,35 @@ function del_orden() {
     echo "</table>";
 }
 
+function del_cargo() {
+    global $mysqli;
+
+    $ids = $_REQUEST['id'];
+
+    echo "<table border = '2'>";
+    echo "<tr>";
+    echo "<th>nombre del cargo</th>";
+
+    foreach ($ids as $id) {
+
+        $show = "SELECT * FROM cargo WHERE pk_cargo = '$id'";
+
+        $res = $mysqli->query($show) or die('No se pudo mostrar');
+
+        while($columna = mysqli_fetch_array($res)) {
+            echo "<tr>";
+            echo "<td>" . $columna['nombre_cargo'] . "</td>";
+            echo "</tr>";
+        }
+
+        $ins = "DELETE FROM ordenar WHERE id = '$id'";
+
+        $mysqli->query($ins) or die ('No se pudo eliminar');
+
+    }
+    echo "</table>";
+}
+
 function del_po() {
     global $mysqli;
 
@@ -189,18 +218,18 @@ function del_po() {
     foreach ($id_ps as $id_p) {
         $ins = "CALL delete_po ('$id', '$id_p')";
 
-        $show = "SELECT o.nombre, pr.nombre_producto FROM pedir p JOIN ordenar o ON o.id = p.orden 
-        JOIN producto pr ON pr.id_producto = p.producto WHERE p.orden = '$id'";
-
-        $res = $mysqli->query($show) or die ("No se pudo mostrar");
-
-        while($columna = mysqli_fetch_array($res)) {
-            echo "<tr>";
-            echo "<td>" . $columna['nombre'] . "</td><td>" . $columna['nombre_producto'] ."</td>";
-            echo "</tr>";
-        }
-
         $mysqli->query($ins) or die ("No se pudo eliminar");
+    }
+
+    $show = "SELECT o.nombre, pr.nombre_producto FROM pedir p JOIN ordenar o ON o.id = p.orden 
+            JOIN producto pr ON pr.id_producto = p.producto WHERE p.orden = '$id'";
+
+    $res = $mysqli->query($show) or die ("No se pudo mostrar");
+
+    while($columna = mysqli_fetch_array($res)) {
+        echo "<tr>";
+        echo "<td>" . $columna['nombre'] . "</td><td>" . $columna['nombre_producto'] ."</td>";
+        echo "</tr>";
     }
 
     echo "</table>";
@@ -255,6 +284,9 @@ switch($i) {
     break;
     case 'orden':
         del_orden();
+    break;
+    case 'cargo':
+        del_cargo();
     break;
     case 'po':
         del_po();

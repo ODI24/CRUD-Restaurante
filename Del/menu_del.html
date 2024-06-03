@@ -11,6 +11,7 @@
     <button id="btn_personal" onclick="movetoDelproducto()">Producto</button>
     <button id="btn_personal" onclick="movetoDeling()">Ingrediente</button>
     <button id="btn_personal" onclick="movetoDelorden()">Orden</button>
+    <button id="btn_personal" onclick="movetoDelcargo()">Cargo</button>
     <button id="btn_Po" onclick="movetoDelpo()">Productos de una orden</button>
     <button id="btn_Po" onclick="movetoDelip()">Ingredientes de un producto</button>
 
@@ -31,6 +32,9 @@
         }
         function movetoDelorden() {
         window.location.href = "del_ordenar.php";
+        }
+        function movetoDelcargo() {
+        window.location.href = "del_cargo.php";
         }
         function movetoDelpo() {
         window.location.href = "del_po.php";
