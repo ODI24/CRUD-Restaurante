@@ -12,7 +12,7 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['i'])) {
                 echo '<h3>Datos Modificados :</h3>';
-                include ('show_upd.php');
+                include ('show_del.php');
                 echo '<br>';
             }
         ?>

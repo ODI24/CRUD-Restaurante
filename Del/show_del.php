@@ -206,6 +206,8 @@ function del_po() {
     echo "</table>";
 }
 
+
+//ip -> ingrediente producto// del_ip() es la funcion para eliminar un ingrediente de un producto
 function del_ip() {
     global $mysqli;
 
@@ -220,18 +222,18 @@ function del_ip() {
     foreach ($id_is as $id_i) {
         $ins = "CALL delete_ip ('$id', '$id_i')";
 
-        $show = "SELECT p.nombre_producto, i.nombre_ing FROM preparar_receta pr JOIN producto p 
-        ON pr.id_producto = p.id_producto JOIN ingredientes i ON pr.id_ing = i.id_ing WHERE pr.id_producto = '$id'";
-
-        $res = $mysqli->query($show) or die ("No se pudo mostrar");
-
-        while($columna = mysqli_fetch_array($res)) {
-            echo "<tr>";
-            echo "<td>" . $columna['nombre_producto'] . "</td><td>" . $columna['nombre_ing'] ."</td>";
-            echo "</tr>";
-        }
-
         $mysqli->query($ins) or die ("No se pudo eliminar");
+    }
+
+    $show = "SELECT p.nombre_producto, i.nombre_ing FROM preparar_receta pr JOIN producto p 
+    ON pr.id_producto = p.id_producto JOIN ingredientes i ON pr.id_ing = i.id_ing WHERE pr.id_producto = '$id'";
+
+    $res = $mysqli->query($show) or die ("No se pudo mostrar");
+
+    while($columna = mysqli_fetch_array($res)) {
+        echo "<tr>";
+        echo "<td>" . $columna['nombre_producto'] . "</td><td>" . $columna['nombre_ing'] ."</td>";
+        echo "</tr>";
     }
 
     echo "</table>";

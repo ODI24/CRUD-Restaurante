@@ -98,7 +98,7 @@ function mod_personal() {
     
     
     $ins = "UPDATE personal SET nombre = '$nombre', apellido = '$apellido', cargo = '$cargo',
-    username = '$username', password = '$password' WHERE personal_id = '$id'";
+    username = '$username', password = SHA2('$password',256) WHERE personal_id = '$id'";
     $mysqli->query($ins) or die ('No se pudo modificar');
 
     $show = "SELECT p.*, c.nombre_cargo FROM personal as p JOIN cargo as c ON p.cargo = c.pk_cargo WHERE personal_id = $id";

@@ -28,8 +28,8 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
             ?>
             </select> <br>
             <h4>Ingrese los datos:</h4>
-            nombre: <input type="text" name="nombre" placeholder="Mesa 1" pattern="[A-Za-z0-9 ]+" maxlength="20"
-                 title="Por favor, ingresa solo letras y numeros (no caracteres especiales)." required> <br>
+            nombre: <input type="text" name="nombre" placeholder="Mesa 1" pattern="[A-Za-z0-9/# ]+" maxlength="20"
+                 title="Por favor, ingresa solo letras y numeros (no caracteres especiales, excepto '/' y '#')." required> <br>
             personas: <input type="number" name="personas" placeholder="2" min="1" max="50" required> <br> 
             <input type="submit" value="Modificar">
         </form>

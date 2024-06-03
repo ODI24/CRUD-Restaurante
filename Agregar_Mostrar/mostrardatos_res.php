@@ -25,7 +25,7 @@
                 $consulta_pedidos = "SELECT producto.nombre_producto AS Producto_pedido, ordenar.nombre AS Mesa 
                                      FROM pedir
                                      INNER JOIN producto ON producto.id_producto = pedir.producto
-                                     INNER JOIN ordenar ON ordenar.id = pedir.orden;";
+                                     INNER JOIN ordenar ON ordenar.id = pedir.orden ORDER BY id ASC;";
                 echo "Consulta SQL: " . $consulta_pedidos; // Depuración
                 $imprimir_pedidos = mysqli_query($conexion, $consulta_pedidos) or die ("3- Algo ha ido mal en la consulta a la base de datos: " . mysqli_error($conexion));
             } else {
@@ -129,13 +129,15 @@
                 echo "<table border='2'>";
                 echo "<tr>";
                 echo "<th> Ingrediente </th>";
-                echo "<th> Cantidad disponible </th>" ;
+                echo "<th> Cantidad disponible </th>";
+                echo "<th> Ultimo abastecimiento </th>";
                 echo "</tr>";
     
                 while ($columna = mysqli_fetch_array($imprimir)) {
                    echo "<tr>";
                    echo "<td>" . $columna['nombre_ing'] ."</td>";
                    echo "<td>" . $columna['cantidad_ing'] ."</td>";
+                   echo "<td>" . $columna['ultimo_abastecimiento'] ."</td>";
                    echo "</tr>";
                 }
                 echo "</table>";
@@ -144,10 +146,11 @@
             {
                 echo "<table border='2'>";
                 echo "<tr>";
-                echo "<th> Num Mesa </th>";
+                echo "<th> Orden </th>";
                 echo "<th> Personas </th>";
                 echo "<th> Total Cuenta </th>";
                 echo "<th> Fecha </th>";
+                echo "<th> Hora </th>";
                 echo "<th> Cliente </th>";
                 echo "<th> Num de Personal atendiendo </th>" ;
                 echo "</tr>";

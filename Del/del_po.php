@@ -1,6 +1,8 @@
 <!-- Variable para el ingreso a la bd -->
 <?php
 $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la conexion");
+
+
 ?>
 
 <html>

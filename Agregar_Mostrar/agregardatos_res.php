@@ -1,3 +1,8 @@
+<!-- Variable para el ingreso a la bd -->
+<?php
+$mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la conexion");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -59,56 +64,99 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre'])) {
 
 <!-- Mostrar el formulario seleccionado -->
 <?php if ($formulario == 1): ?>
-    <form action="http://localhost/codes/CRUD-Restaurante/Agregar_Mostrar/cliente_recibirdatos_res.php" method="post">
-        nombre: <input type="text" name="nombre"> <br>
-        apellido paterno: <input type="text" name="apellido_p"> <br>
-        apellido materno: <input type="text" name="apellido_m"> <br>
-        telefono: <input type="text" name="celular"> <br>
+    <form action="cliente_recibirdatos_res.php" method="post">
+        nombre: <input type="text" name="nombre" placeholder="Juan" pattern="[A-Za-z ]+" maxlength="20"
+            title="Por favor, ingresa solo letras (no numeros ni caracteres especiales)." required> <br>
+        apellido paterno: <input type="text" name="apellido_p" placeholder="Perez" pattern="[A-Za-z ]+" maxlength="20"
+            title="Por favor, ingresa solo letras (no numeros ni caracteres especiales)." required> <br>
+        apellido materno: <input type="text" name="apellido_m" placeholder="Rodriguez" pattern="[A-Za-z ]+" maxlength="20"
+            title="Por favor, ingresa solo letras (no numeros ni caracteres especiales)." required> <br>
+        telefono: <input type="tel" name="celular" maxlength="10" size="10"
+                    placeholder="3325659874" pattern="[1-9]{1}[0-9]{9}" 
+                    title="Ingrese un numero de telefono valido (ej. 3325789410)" required> <br>
         <br>
         <input type="submit" value="Ingresar datos">
     </form>
 <?php elseif ($formulario == 2): ?>
-    <form action="http://localhost/restaurante/personal_recibirdatos_res.php" method="post">
-        nombre: <input type="text" name="nombre"> <br>
-        apellido: <input type="text" name="apellido"> <br>
-        cargo(1-10): <input type="text" name="cargo"> <br>
-        username: <input type="text" name="username"> <br>
-        password: <input type="text" name="password"> <br>
+    <form action="personal_recibirdatos_res.php" method="post">
+        nombre: <input type="text" name="nombre" placeholder="Juan" pattern="[A-Za-z ]+" maxlength="20"
+            title="Por favor, ingresa solo letras (no numeros ni caracteres especiales)." required> <br>
+        apellido: <input type="text" name="apellido" placeholder="Perez" pattern="[A-Za-z ]+" maxlength="20"
+            title="Por favor, ingresa solo letras (no numeros ni caracteres especiales)." required> <br>
+        cargo: <select name = "cargo" required>
+            <?php
+            $query = $mysqli -> query("SELECT * FROM cargo") or die ("no se puede generar el query");
+            while($valores = mysqli_fetch_array($query)) {
+                echo '<option value="'.$valores['pk_cargo'].'">'.$valores['nombre_cargo'].'</option>';
+            }
+            ?>
+            </select> <br>
+        username: <input type="text" name="username" placeholder="RR1" pattern="[A-Z]{2}[0-9]{3}" maxlength="5"
+                 title="Por favor, sigue el formato establecido AA111." required> <br>
+        password: <input type="password" name="password" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[~!@#$%^&*()_-]).{8,}"
+                 title="La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial." 
+                 maxlength="40" required> <br>
         <br>
         <input type="submit" value="Ingresar datos">
     </form>
 <?php elseif ($formulario == 3): ?>
-    <form action="http://localhost/restaurante/orden_recibirdatos_res.php" method="post">
-        nombre de mesa(mesa X - p/llevar X): <input type="text" name="nombre"> <br>
-        Personas en total (1-X): <input type="text" name="personas_total"> <br>
-        total de cuenta: <input type="text" name="total"> <br>
-        fecha: <input type="text" name="fecha"> <br>  
-        hora: <input type="text" name="hora"> <br>
-        Numero de cliente(1-10): <input type="text" name="cliente"> <br>
-        Personal atendiendo: <input type="text" name="personal_atendiendo"> <br>
+    <form action="orden_recibirdatos_res.php" method="post">
+        nombre de mesa(mesa X - p/llevar X): <input type="text" name="nombre" 
+                placeholder="Mesa 1" pattern="[A-Za-z0-9/# ]+" maxlength="20"
+                title="Por favor, ingresa solo letras y numeros (no caracteres especiales excepto '#' y '/')."
+                required> <br>
+        personas: <input type="number" name="personas_total" placeholder="2" min="1" max="50" required> <br>
+        cliente: <select name = "cliente">
+            <?php
+            $query = $mysqli -> query("SELECT * FROM cliente") or die ("no se puede generar el query");
+            while($valores = mysqli_fetch_array($query)) {
+                echo '<option value="'.$valores['n_cliente'].'">'.$valores['nombre']." ".$valores['apellido_p'].'</option>';
+            }
+            ?>
+        </select><br>
+        personal: <select name = "personal_atendiendo" required>
+            <?php
+            $query = $mysqli -> query("SELECT * FROM personal WHERE cargo = '1' OR cargo = '7'") or die ("no se puede generar el query");
+            while($valores = mysqli_fetch_array($query)) {
+                echo '<option value="'.$valores['personal_id'].'">'.$valores['nombre']." ".$valores['apellido'].'</option>';
+            }
+            ?>
+        </select><br>
         <br>
         <input type="submit" value="Ingresar datos">
     </form>
 <?php elseif ($formulario == 4): ?>
-    <form action="http://localhost/restaurante/cargo_recibirdatos_res.php" method="post">
-        Nombre del cargo a agregar: <input type="text" name="cargo"> <br>
+    <form action="cargo_recibirdatos_res.php" method="post">
+        Nombre del cargo a agregar: <input type="text" name="cargo" placeholder="Mesero" 
+                pattern="[A-Za-z ]+" maxlength="20"
+                title="Por favor, ingresa solo letras (no numeros ni caracteres especiales)." required> <br>
         <br>
         <input type="submit" value="Ingresar datos">
     </form>
 <?php elseif ($formulario == 5): ?>
-    <form action="http://localhost/restaurante/ingredientes_recibirdatos_res.php" method="post">
-        Nombre del ingrediente: <input type="text" name="nombre"> <br>
-        Cantidad actual del ingrediente: <input type="text" name="ingrediente"> <br>
-        Ultimo abastecimiento: <input type="text" name="abastecimiento"> <br>
+    <form action="ingredientes_recibirdatos_res.php" method="post">
+        Nombre del ingrediente: <input type="text" name="nombre" placeholder="Tortilla" 
+                pattern="[A-Za-z ]+" maxlength="20"
+                title="Por favor, ingresa solo letras (no numeros ni caracteres especiales)." required> <br>
+        Cantidad actual del ingrediente: <input type="text" name="ingrediente" placeholder="50" 
+                pattern="[0-9]+" maxlength="5"
+                title="Por favor, ingresa solo numeros (no letras ni caracteres especiales)." required> <br>
+        Ultimo abastecimiento: <input type="datetime-local" name="abastecimiento"> <br>
         <br>
         <input type="submit" value="Ingresar datos">
     </form>
 <?php elseif ($formulario == 6): ?>
-    <form action="http://localhost/restaurante/producto_recibirdatos_res.php" method="post">
-        nombre producto: <input type="text" name="nombre"> <br>
-        descripcion de producto: <input type="text" name="descripcion"> <br>
-        precio a vender: <input type="text" name="precio"> <br>
-        <br>
+    <form action="producto_recibirdatos_res.php" method="post">
+        nombre producto: <input type="text" name="nombre" placeholder="Huevo con tortilla" 
+                pattern="[A-Za-z ]+" maxlength="20"
+                title="Por favor, ingresa solo letras (no numeros ni caracteres especiales)." required> <br>
+        descripcion de producto: <input type="text" name="descripcion" 
+                placeholder="Huevo preparado con tortilla frita" pattern="[A-Za-z0-9 ]+" maxlength="100"
+                title="Por favor, ingresa solo letras o numeros." required> <br>
+        precio a vender: <input type="text" name="precio" placeholder="50" pattern="[0-9]+" 
+                maxlength="5" size="5"
+                title="Por favor, ingresa solo numeros (no letras ni caracteres especiales)." required>
+        <br> <br>
         <input type="submit" value="Ingresar datos">
     </form>
 <?php endif; ?>
