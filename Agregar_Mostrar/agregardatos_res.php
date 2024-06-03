@@ -6,6 +6,7 @@
     <title>Formularios en PHP</title>
 </head>
 <body>
+    <h1>Agregar datos</h1>
 
 <?php
 // Variable para determinar qué formulario mostrar
@@ -58,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre'])) {
 
 <!-- Mostrar el formulario seleccionado -->
 <?php if ($formulario == 1): ?>
-    <form action="http://localhost/restaurante/cliente_recibirdatos_res.php" method="post">
+    <form action="http://localhost/codes/CRUD-Restaurante/Agregar_Mostrar/cliente_recibirdatos_res.php" method="post">
         nombre: <input type="text" name="nombre"> <br>
         apellido paterno: <input type="text" name="apellido_p"> <br>
         apellido materno: <input type="text" name="apellido_m"> <br>
@@ -111,6 +112,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre'])) {
         <input type="submit" value="Ingresar datos">
     </form>
 <?php endif; ?>
+
+<br> <button id="btn_return" onclick="returnto()">Regresar</button>
+
+<script>
+    function returnto() {
+        window.location.href = "menu_res.php";
+    }
+</script>
 
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu Modificar</title>
+</head>
+<body>
+    <h1>Menu de modificar</h1>
+    <h3>Seleccione:</h3>
+    <br> 
+    <button id="btn_Cli" onclick="movetoAbast()">Abastecimiento nuevo</button>
+    <button id="btn_Ing" onclick="movetoOrden()">Anadir productos a la orden</button>
+    <button id="btn_Ord" onclick="movetoProducto()">Anadir ingredientes al producto</button>
+    <br><br>
+    <button id="btn_return" onclick="returntoMenu()">Regresar</button>
+
+    <script>
+        function movetoAbast() {
+            window.location.href = "abast.php";
+        }
+        function movetoOrden() {
+            window.location.href = "orden.php";
+        }
+        function movetoProducto() {
+            window.location.href = "producto.php";
+        }
+        function returntoMenu() {
+                window.location.href = "../inicio.html";
+        }
+    </script>
+</body>
+</html>

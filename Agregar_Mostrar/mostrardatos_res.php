@@ -19,7 +19,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tabla = $_POST['tabla'];
             $conexion = mysqli_connect("localhost", "root", "") or die ("1-No se ha podido conectar al servidor de Base de Datos");
-            $db = mysqli_select_db($conexion, "restaurante2") or die ("2- Upps! No se pudo realizar la conexion");
+            $db = mysqli_select_db($conexion, "restaurante") or die ("2- Upps! No se pudo realizar la conexion");
 
             if ($tabla == "pedido_mesa") {
                 $consulta_pedidos = "SELECT producto.nombre_producto AS Producto_pedido, ordenar.nombre AS Mesa 
@@ -167,5 +167,13 @@
             }
         }
         ?>
+
+        <br> <button id="btn_return" onclick="returnto()">Regresar</button>
+
+        <script>
+            function returnto() {
+                window.location.href = "menu_res.php";
+            }
+        </script>
     </body>
 </html>

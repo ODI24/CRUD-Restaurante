@@ -40,7 +40,14 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
             <input type="submit" value="Modificar">
         </form>
 
-        <a href="http://localhost/codes/CRUD-Restaurante/Mod/menu_mod.html">Regresar</a>
+        <br>
+        <button id="btn_return" onclick="returntoMenu()">Regresar</button>
+
+        <script>
+            function returntoMenu() {
+                window.location.href = "menu_mod.html";
+            }
+        </script>
     </body>
 </html>
 

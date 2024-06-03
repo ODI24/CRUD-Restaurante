@@ -5,14 +5,14 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
 
 <html>
     <head>
-        <title>Modificar Orden</title>
+        <title>Anadir productos</title>
     </head>
     <body>
-        <h1>Modificar Orden</h1>
+        <h1>Anadir productos a la orden</h1>
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['i'])) {
                 echo '<h3>Datos Modificados :</h3>';
-                include ('show_mod.php');
+                include ('show_upd.php');
                 echo '<br>';
             }
         ?>
@@ -27,11 +27,15 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
             }
             ?>
             </select> <br>
-            <h4>Ingrese los datos:</h4>
-            nombre: <input type="text" name="nombre" placeholder="Mesa 1" pattern="[A-Za-z0-9 ]+" maxlength="20"
-                 title="Por favor, ingresa solo letras y numeros (no caracteres especiales)." required> <br>
-            personas: <input type="number" name="personas" placeholder="2" min="1" max="50" required> <br> 
-            <input type="submit" value="Modificar">
+            <h4>Ingrese los productos a anadir (ctrl + click):</h4>
+            orden: <select name = "id_p[]" multiple required>
+            <?php
+            $query = $mysqli -> query("SELECT * FROM producto") or die ("no se puede generar el query");
+            while($valores = mysqli_fetch_array($query)) {
+                echo '<option value="'.$valores['id_producto'].'">'.$valores['nombre_producto'].'</option>';
+            }
+            ?>
+            <input type="submit" value="Anadir">
         </form>
         
         <br>
@@ -39,7 +43,7 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
 
         <script>
             function returntoMenu() {
-                window.location.href = "menu_mod.html";
+                window.location.href = "menu_upd.html";
             }
         </script>
     </body>

@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
-    $titulo = "CRUD";
+    $titulo = "Menu de agregar y mostrar";
     print "<h1>$titulo</h1>"; //nivel de encabez
     ?>
 </head>
@@ -25,12 +25,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <label for="options">Escoge una opción:</label>
         <select id="options" name="option">
             <option value="">--Selecciona una opción--</option>
-            <option value="agregardatos_res.php"> Insertar Cliente</option>
-            <option value="archivo2.php"> Eliminar Cliente</option>
-            <option value="archivo33333.php"> Modificar datos</option>
-            <option value="mostrardatos_res.php"> Mostrar datos</option>
+            <option value="agregardatos_res.php"> Insertar Datos</option>
+            <option value="mostrardatos_res.php"> Mostrar Datos</option>
         </select>
         <button type="submit">Ir</button>
     </form>
+
+    <br>
+        <button id="btn_return" onclick="returntoMenu()">Regresar</button>
+
+        <script>
+            function returntoMenu() {
+                window.location.href = "../inicio.html";
+            }
+        </script>
 </body>
 </html>

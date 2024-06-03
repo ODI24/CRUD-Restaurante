@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu Eliminar</title>
+</head>
+<body>
+    <h1>Menu de Eliminar</h1>
+    <h3>Seleccione:</h3>
+    <button id="btn_cliente" onclick="movetoDelcliente()">Cliente</button>
+    <button id="btn_personal" onclick="movetoDelpersonal()">Personal</button>
+    <button id="btn_personal" onclick="movetoDelproducto()">Producto</button>
+    <button id="btn_personal" onclick="movetoDeling()">Ingrediente</button>
+    <button id="btn_personal" onclick="movetoDelorden()">Orden</button>
+    <button id="btn_Po" onclick="movetoDelpo()">Productos de una orden</button>
+
+    <br> <br> <button id="btn_return" onclick="returntoMenu()">Regresar</button>
+
+    <script>
+        function movetoDelcliente() {
+        window.location.href = "del_cliente.php";
+        }
+        function movetoDelpersonal() {
+        window.location.href = "del_personal.php";
+        }
+        function movetoDelproducto() {
+        window.location.href = "del_producto.php";
+        }
+        function movetoDeling() {
+        window.location.href = "del_ing.php";
+        }
+        function movetoDelorden() {
+        window.location.href = "del_ordenar.php";
+        }
+        function movetoDelpo() {
+        window.location.href = "del_po.php";
+        }
+        function returntoMenu() {
+            window.location.href = "../inicio.html";
+        }
+    </script>
+</body>
+</html>

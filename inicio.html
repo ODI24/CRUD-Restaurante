@@ -4,10 +4,28 @@
     <title>Inicio CRUD</title>
 </head>
 <body>
-    <h1>Opciones del menu</h1>
-    <h3>Seleccione:</h3>
-    <a href="http://localhost/codes/CRUD-Restaurante/Mod/mod_cliente.php">Cliente</a>
-    <a href="http://localhost/codes/CRUD-Restaurante/Mod/menu_mod.html">Modificar</a>
-    <a href="http://localhost/codes/CRUD-Restaurante/Mod/mod_personal.php">Personal</a>
+    <h1>Bienvenido al sistema!</h1>
+    <br>
+    <h3>Seleccione la opcion:</h3>
+    <br> 
+    <button id="btn_Add" onclick="movetoAdd()">Anadir/Ver</button>
+    <button id="btn_Mod" onclick="movetoMod()">Modificar</button>
+    <button id="btn_Del" onclick="movetoDel()">Eliminar</button>
+    <button id="btn_Upd" onclick="movetoUpd()">Actualizar</button>
+
+    <script>
+        function movetoMod() {
+            window.location.href = "Mod/menu_mod.html";
+        }
+        function movetoAdd() {
+            window.location.href = "Agregar_Mostrar/menu_res.php";
+        }
+        function movetoDel() {
+            window.location.href = "Del/menu_del.html";
+        }
+        function movetoUpd() {
+            window.location.href = "Upd/menu_upd.html";
+        }
+    </script>
 </body>
 </html>

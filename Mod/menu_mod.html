@@ -6,10 +6,34 @@
 <body>
     <h1>Menu de modificar</h1>
     <h3>Seleccione:</h3>
-    <a href="mod_cliente.php">Cliente</a>
-    <a href="mod_producto.php">Producto</a>
-    <a href="mod_personal.php">Personal</a>
-    <a href="mod_ing.php">Ingrediente</a>
-    <a href="mod_ordenar.php">Orden</a>
+    <br> 
+    <button id="btn_Cli" onclick="movetoCli()">Cliente</button>
+    <button id="btn_Ing" onclick="movetoIng()">Ingrediente</button>
+    <button id="btn_Ord" onclick="movetoOrd()">Orden</button>
+    <button id="btn_Pro" onclick="movetoPro()">Producto</button>
+    <button id="btn_Per" onclick="movetoPer()">Personal</button>
+    <br><br>
+    <button id="btn_return" onclick="returntoMenu()">Regresar</button>
+
+    <script>
+        function movetoCli() {
+            window.location.href = "mod_cliente.php";
+        }
+        function movetoIng() {
+            window.location.href = "mod_ing.php";
+        }
+        function movetoOrd() {
+            window.location.href = "mod_ordenar.php";
+        }
+        function movetoPro() {
+            window.location.href = "mod_producto.php";
+        }
+        function movetoPer() {
+            window.location.href = "mod_personal.php";
+        }
+        function returntoMenu() {
+            window.location.href = "../inicio.html";
+        }
+    </script>
 </body>
 </html>

@@ -29,7 +29,7 @@ function mod_cliente() {
 
     $res = $mysqli->query($show) or die('No se pudo mostrar');
 
-    echo "<table borde = '2'>";
+    echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>n_cliente</th>";
     echo "<th>nombre</th>";
@@ -67,7 +67,7 @@ function mod_producto() {
     
     $res = $mysqli->query($show) or die ('No se pudo mostrar');
 
-    echo "<table borde = '2'>";
+    echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>id</th>";
     echo "<th>nombre</th>";
@@ -104,7 +104,7 @@ function mod_personal() {
     $show = "SELECT p.*, c.nombre_cargo FROM personal as p JOIN cargo as c ON p.cargo = c.pk_cargo WHERE personal_id = $id";
     $res = $mysqli->query($show) or die ('No se puede mostrar');
 
-    echo "<table borde = '2'>";
+    echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>id</th>";
     echo "<th>nombre</th>";
@@ -141,7 +141,7 @@ function mod_ing() {
     $show = "SELECT * FROM ingredientes WHERE id_ing = $id";
     $res = $mysqli->query($show) or die ('No se puede mostrar');
 
-    echo "<table borde = '2'>";
+    echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>id</th>";
     echo "<th>nombre</th>";
@@ -172,7 +172,7 @@ function mod_orden() {
     $show = "SELECT * FROM ordenar WHERE id = $id";
     $res = $mysqli->query($show) or die ('No se puede mostrar');
 
-    echo "<table borde = '2'>";
+    echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>id</th>";
     echo "<th>nombre</th>";

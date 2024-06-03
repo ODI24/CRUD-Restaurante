@@ -5,35 +5,37 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
 
 <html>
     <head>
-        <title>Modificar Ingrediente</title>
+        <title>Eliminar ingredientes producto</title>
     </head>
     <body>
-        <h1>Modificar Ingrediente</h1>
+        <h1>Eliminar ingredientes del producto</h1>
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['i'])) {
                 echo '<h3>Datos Modificados :</h3>';
-                include ('show_mod.php');
+                include ('show_upd.php');
                 echo '<br>';
             }
         ?>
         <form action="" method="post">
-            <h4>Ingrediente a modificar</h4>
-            <input type="hidden" name="i" value="ingrediente">
-            Producto: <select name = "id" required>
+            <h4>Producto a modificar</h4>
+            <input type="hidden" name="i" value="ip">
+            orden: <select name = "id" required>
+            <?php
+            $query = $mysqli -> query("SELECT * FROM producto") or die ("no se puede generar el query");
+            while($valores = mysqli_fetch_array($query)) {
+                echo '<option value="'.$valores['id_producto'].'">'.$valores['nombre_producto'].'</option>';
+            }
+            ?>
+            </select> <br>
+            <h4>Ingrese los ingredientes a eliminar (ctrl + click):</h4>
+            orden: <select name = "id_i[]" multiple required>
             <?php
             $query = $mysqli -> query("SELECT * FROM ingredientes") or die ("no se puede generar el query");
             while($valores = mysqli_fetch_array($query)) {
                 echo '<option value="'.$valores['id_ing'].'">'.$valores['nombre_ing'].'</option>';
             }
             ?>
-            </select> <br>
-            <h4>Ingrese los datos:</h4>
-            nombre: <input type="text" name="nombre" placeholder="Huevo" pattern="[A-Za-z ]+" maxlength="20"
-                 title="Por favor, ingresa solo letras (no numeros ni caracteres especiales)." required> <br>
-            cantidad: <input type="text" name="cant" placeholder="50" pattern="[0-9]+" maxlength="5"
-                 title="Por favor, ingresa solo numeros (no letras ni caracteres especiales)." required> <br>
-            ultimo abastecimiento: <input type="datetime-local" name="abast" required><br>
-            <input type="submit" value="Modificar">
+            <input type="submit" value="Eliminar">
         </form>
         
         <br>
@@ -41,7 +43,7 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
 
         <script>
             function returntoMenu() {
-                window.location.href = "menu_mod.html";
+                window.location.href = "menu_del.html";
             }
         </script>
     </body>

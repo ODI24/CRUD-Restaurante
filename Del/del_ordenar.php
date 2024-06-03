@@ -5,41 +5,37 @@ $mysqli = new mysqli('localhost', 'root', '','restaurante') or die ("Fallo en la
 
 <html>
     <head>
-        <title>Modificar Orden</title>
+        <title>Eliminar Ordenes</title>
     </head>
     <body>
-        <h1>Modificar Orden</h1>
+        <h1>Eliminar Ordenes</h1>
         <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['i'])) {
-                echo '<h3>Datos Modificados :</h3>';
-                include ('show_mod.php');
+                echo '<h3>Datos Eliminados:</h3>';
+                include ('show_del.php');
                 echo '<br>';
             }
         ?>
         <form action="" method="post">
-            <h4>Orden a modificar</h4>
             <input type="hidden" name="i" value="orden">
-            orden: <select name = "id" required>
+            <h4>Seleccione ingredientes a eliminar (ctrl + click): </h4>
+            cliente: <select name = "id[]" multiple required>
             <?php
             $query = $mysqli -> query("SELECT * FROM ordenar") or die ("no se puede generar el query");
             while($valores = mysqli_fetch_array($query)) {
                 echo '<option value="'.$valores['id'].'">'.$valores['nombre'].'</option>';
             }
             ?>
-            </select> <br>
-            <h4>Ingrese los datos:</h4>
-            nombre: <input type="text" name="nombre" placeholder="Mesa 1" pattern="[A-Za-z0-9 ]+" maxlength="20"
-                 title="Por favor, ingresa solo letras y numeros (no caracteres especiales)." required> <br>
-            personas: <input type="number" name="personas" placeholder="2" min="1" max="50" required> <br> 
-            <input type="submit" value="Modificar">
+            </select> <br><br>
+            <input type="submit" value="Eliminar">
         </form>
-        
-        <br>
+
+        <br> <br>
         <button id="btn_return" onclick="returntoMenu()">Regresar</button>
 
         <script>
             function returntoMenu() {
-                window.location.href = "menu_mod.html";
+                window.location.href = "menu_del.html";
             }
         </script>
     </body>
