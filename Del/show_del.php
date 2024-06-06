@@ -196,7 +196,7 @@ function del_cargo() {
             echo "</tr>";
         }
 
-        $ins = "DELETE FROM ordenar WHERE id = '$id'";
+        $ins = "DELETE FROM cargo WHERE pk_cargo = '$id'";
 
         $mysqli->query($ins) or die ('No se pudo eliminar');
 
